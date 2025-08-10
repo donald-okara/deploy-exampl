@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Deploy Exampl"
 include(":app")
- 
+include(":sample")
