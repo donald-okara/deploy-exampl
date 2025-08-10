@@ -4,6 +4,11 @@ plugins {
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
+val versionProp = findProperty("version") as String?
+if (versionProp.isNullOrBlank()) {
+    throw GradleException("❌ Version property is required. Pass it via -Pversion=YOUR_VERSION")
+}
+
 android {
     namespace = "ke.don.sample"
     compileSdk = 36
@@ -47,7 +52,7 @@ mavenPublishing {
     publishToMavenCentral() // or publishToMavenCentral(automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.donald-okara", "sample", "1.0.4")
+    coordinates("io.github.donald-okara", "sample", versionProp!!)
 
     pom {
         name.set("Sample Library")
