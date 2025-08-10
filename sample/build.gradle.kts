@@ -4,7 +4,7 @@ plugins {
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
-version = project.findProperty("version") ?: "1.0.5"
+version = project.findProperty("version") ?: throw GradleException("Version property is required. Pass it with -Pversion=<version>")
 
 android {
     namespace = "ke.don.sample"

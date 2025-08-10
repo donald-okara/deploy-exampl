@@ -3,7 +3,11 @@ on:
   push:
     tags:
       - '*' # Match any tag, e.g., 1.0.0
-  workflow_dispatch: # Optional manual trigger
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish'
+        required: true
 
 jobs:
   publish:
@@ -27,7 +31,7 @@ jobs:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }} # optional
-          TAG_VERSION: ${{ github.ref_name }}
+        TAG_VERSION: ${{ github.event.inputs.version || github.ref_name }}
         run: |
           ./gradlew publishToMavenCentral \
             -Pversion=$TAG_VERSION \
