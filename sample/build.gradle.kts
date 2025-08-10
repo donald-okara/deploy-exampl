@@ -1,9 +1,7 @@
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id("com.vanniktech.maven.publish") version "0.30.0"
+    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
 android {
@@ -46,35 +44,34 @@ dependencies {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-
+    publishToMavenCentral() // or publishToMavenCentral(automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.donald-okara", "sample-library", "0.0.1")
+    coordinates("io.github.donald-okara", "sample", "1.0.3")
 
     pom {
-        name = "sample library"
-        description = "A mathematics calculation library."
-        inceptionYear = "2024"
-        url = "https://github.com/donald-okara/deploy-exampl"
+        name.set("Sample Library")
+        description.set("A description of what my library does.")
+        inceptionYear.set("2025")
+        url.set("https://github.com/donald-okara/deploy-exampl/")
         licenses {
             license {
-                name = "The Apache License, Version 2.0"
-                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
-                distribution = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("repo")
             }
         }
         developers {
             developer {
-                id = "donald-okara"
-                name = "Donald Okara"
-                url = "https://github.com/donald-okara"
+                id.set("donald-okara")
+                name.set("Donald Okara")
+                url.set("https://github.com/donald-okara/")
             }
         }
         scm {
-            url = "https://github.com/donald-okara/deploy-exampl/"
-            connection = "scm:git:git://github.com/donald-okara/deploy-exampl.git"
-            developerConnection = "scm:git:ssh://git@github.com/donald-okara/deploy-exampl.git"
+            url.set("https://github.com/donald-okara/deploy-exampl/")
+            connection.set("scm:git:git://github.com/donald-okara/deploy-exampl.git")
+            developerConnection.set("scm:git:ssh://git@github.com/donald-okara/deploy-exampl.git")
         }
     }
 }
