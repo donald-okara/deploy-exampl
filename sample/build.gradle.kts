@@ -47,7 +47,7 @@ mavenPublishing {
     publishToMavenCentral() // or publishToMavenCentral(automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.donald-okara", "sample", "1.0.3")
+    coordinates("io.github.donald-okara", "sample", "1.0.4")
 
     pom {
         name.set("Sample Library")
